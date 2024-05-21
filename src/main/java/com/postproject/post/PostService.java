@@ -37,6 +37,7 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new Exception("해당 게시글이 없습니다."));
 
+        // DB에서 가져온 엔티티 Dto로 변환하여 반환
         return PostDto.toDto(post);
     }
 
@@ -49,7 +50,20 @@ public class PostService {
         // 게시글 수정
         post.edit(request);
 
-        // 게시글 저장
+        // 게시글 저장후 반환
         return PostDto.toDto(postRepository.save(post));
+    }
+
+    @Transactional
+    public PostDto deletePost(Long id) throws Exception {
+        // DB의 해당 id 게시글이 없으면 에러
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new Exception("해당 게시글이 없습니다."));
+
+        // 게시글 삭제
+        postRepository.delete(post);
+
+        // 삭제된 게시글 Dto 변환하여 반환
+        return PostDto.toDto(post);
     }
 }

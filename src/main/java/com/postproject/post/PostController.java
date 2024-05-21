@@ -31,4 +31,9 @@ public class PostController {
         return postService.editPost(id, postDto);
     }
 
+    @DeleteMapping("/{id}")
+    public PostDto deletePost(@PathVariable Long id) throws Exception {
+        return postService.deletePost(id);
+    }
+
 }

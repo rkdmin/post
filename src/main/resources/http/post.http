@@ -33,4 +33,11 @@ Content-Type: application/json
 
 ###
 
+# Delete Post
+DELETE http://localhost:8080/posts/1
+Accept: application/json
+
+###
+
+
 
