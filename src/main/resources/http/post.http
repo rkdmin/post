@@ -1,4 +1,5 @@
-# Create post
+###
+# Create Post
 POST http://localhost:8080/posts
 Content-Type: application/json
 
@@ -6,3 +7,19 @@ Content-Type: application/json
   "title": "게시글 제목",
   "content": "게시글 내용입니다."
 }
+
+###
+
+# Get all posts
+GET http://localhost:8080/posts
+Accept: application/json
+
+###
+
+###
+
+# Get posts
+GET http://localhost:8080/posts/1
+Accept: application/json
+
+###

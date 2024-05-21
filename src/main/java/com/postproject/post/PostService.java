@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -20,5 +22,18 @@ public class PostService {
 
         // DB에 저장
         return PostDto.toDto(postRepository.save(post));
+    }
+
+    public List<PostDto> getAllPost() {
+        return postRepository.findAll().stream()
+                .map(PostDto::toDto)
+                .toList();
+    }
+
+    public PostDto getPost(Long id) throws Exception {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new Exception("해당 게시글이 없습니다."));
+
+        return PostDto.toDto(post);
     }
 }
