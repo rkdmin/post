@@ -16,7 +16,7 @@ public class PostDto {
         return PostDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
-                .content(post.getContents())
+                .content(post.getContent())
                 .build();
     }
 }

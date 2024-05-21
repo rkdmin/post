@@ -1,0 +1,13 @@
+###
+# Create reply
+POST http://localhost:8080/replies
+Content-Type: application/json
+
+{
+  "title": "댓글 제목",
+  "postId": 1,
+  "content": "댓글 내용입니다."
+}
+
+
+

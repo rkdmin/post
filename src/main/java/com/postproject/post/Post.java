@@ -19,13 +19,13 @@ public class Post {
 
     private String title;
 
-    private String contents;
+    private String content;
 
     public static Post toEntity(PostDto postDto) {
         return Post.builder()
                 .id(postDto.getId())
                 .title(postDto.getTitle())
-                .contents(postDto.getContent())
+                .content(postDto.getContent())
                 .build();
     }
 
@@ -36,7 +36,7 @@ public class Post {
         }
         // 내용이 있으면 변경
         if (StringUtils.isNotBlank(request.getContent())) {
-            this.contents = request.getContent();
+            this.content = request.getContent();
         }
     }
 }
