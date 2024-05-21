@@ -1,5 +1,6 @@
 package com.postproject.post;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -26,5 +27,16 @@ public class Post {
                 .title(postDto.getTitle())
                 .contents(postDto.getContent())
                 .build();
+    }
+
+    public void edit(PostDto request) {
+        // 제목이 있으면 변경
+        if (StringUtils.isNotBlank(request.getTitle())) {
+            this.title = request.getTitle();
+        }
+        // 내용이 있으면 변경
+        if (StringUtils.isNotBlank(request.getContent())) {
+            this.contents = request.getContent();
+        }
     }
 }

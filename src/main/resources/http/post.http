@@ -14,7 +14,6 @@ Content-Type: application/json
 GET http://localhost:8080/posts
 Accept: application/json
 
-###
 
 ###
 
@@ -23,3 +22,15 @@ GET http://localhost:8080/posts/1
 Accept: application/json
 
 ###
+
+# Edit Post
+PATCH http://localhost:8080/posts/1
+Content-Type: application/json
+
+{
+  "title": "수정된 제목"
+}
+
+###
+
+
