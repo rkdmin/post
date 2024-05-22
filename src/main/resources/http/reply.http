@@ -1,3 +1,4 @@
+
 ###
 # Create reply
 POST http://localhost:8080/replies
@@ -8,6 +9,14 @@ Content-Type: application/json
   "postId": 1,
   "content": "댓글 내용입니다."
 }
+
+###
+
+# Get All Replies
+GET http://localhost:8080/replies/1
+Accept: application/json
+
+###
 
 
 

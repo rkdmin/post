@@ -9,6 +9,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +33,22 @@ public class ReplyService {
 
         // DB에 저장하고 Dto로 변환하여 반환
         return ReplyDto.toDto(replyRepository.save(reply), post.getId());
+    }
+
+    public List<ReplyDto> getAllReplies(Long postId) throws Exception {
+        // 해당 게시글이 없는 경우
+        if (!postRepository.existsById(postId)) {
+            throw new Exception("해당 게시글이 없습니다.");
+        };
+
+        // DB에서 postId로 댓글들을 찾아옴
+        List<Reply> replies = replyRepository.findByPost_Id(postId);
+
+        // 댓글들을 Dto로 변환하여 반환
+        List<ReplyDto> replyDtos = replies.stream()
+                .map(reply -> ReplyDto.toDto(reply, reply.getPost().getId()))
+                .collect(Collectors.toList());
+
+        return replyDtos;
     }
 }
